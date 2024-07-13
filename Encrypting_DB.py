@@ -1,4 +1,3 @@
-#import mysql.connector
 import pymysql
 
 con = pymysql.connect(
@@ -6,7 +5,7 @@ con = pymysql.connect(
     user = "root",
     passwd  = "*password*11",
     database = "animal_taxonomy_db"
-                            )
+                    )
 
 
 cur = con.cursor()

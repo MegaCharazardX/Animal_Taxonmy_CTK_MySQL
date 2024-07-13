@@ -5,7 +5,7 @@ import os
 from subprocess import call
 import sqlite3
 from Global_Config import *
-import mysql.connector
+import pymysql
 import Password_Hasher as PH
 
 
@@ -18,8 +18,13 @@ root.iconbitmap(r"E:\Dhejus\PythonPractice\XII_Project\Animal_Taxonomy_CTK\icon\
 root.minsize(width = 1000, height = 550)
 set_appearance_mode("Dark")
 
-con = sqlite3.connect("Animal_Taxonomy_Db.db", timeout = 3)
-
+#con = sqlite3.connect("Animal_Taxonomy_Db.db", timeout = 3)
+con = pymysql.connect(
+    host = "localhost",
+    user = "root",
+    passwd  = "*password*11",
+    database = "animal_taxonomy_db"
+    )
 cur = con.cursor()
 
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=GLOBALS=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
