@@ -136,16 +136,13 @@ INSERT INTO "animal_details" ("id","name","kingdom","phylum","class","naturalord
  (112,'King Cobra','Animalia','Chordata','Reptilia','Squamata','Elapidae','Ophiophagus','Hannah',1),
  (113,'Eastern Copperhead','Animalia','Chordata','Reptilia','Squamata','Viperidae','Agkistrodon','Contortrix',1),
  (114,'Arctic Fox','Animalia','Chordata','Mammalia','Carnivora','Canidae','Vulpes','Lagopus',1),
- (115,'Gray Fox
-
-','Animalia','Chordata','Mammalia','Carnivora','Canidae','Urocyon','Cinereoargenteus',1),
+ (115,'Gray Fox','Animalia','Chordata','Mammalia','Carnivora','Canidae','Urocyon','Cinereoargenteus',1),
  (116,'Bat-Eared Fox','Animalia','Chordata','Mammalia','Carnivora','Canidae','Otocyon','Megalotis',1),
  (117,'Common European Adder','Animalia','Chordata','Reptilia','Squamata','Viperidae','Vipera','Berus',1),
  (118,'European Adder','Animalia','Chordata','Reptilia','Squamata','Viperidae','Vipera','Berus',1),
- (119,'
-Adder','Animalia','Chordata','Reptilia','Squamata','Viperidae','Vipera','Berus',1),
+ (119,'Adder','Animalia','Chordata','Reptilia','Squamata','Viperidae','Vipera','Berus',1),
  (120,'Green Bush Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Atheris','Squamigera',1),
- (121,' Leaf Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Atheris','Squamigera',1),
+ (121,'Leaf Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Atheris','Squamigera',1),
  (122,'Saharan Horned Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Cerastes','Cerastes',1),
  (123,'Desert Horned Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Cerastes','Cerastes',1),
  (124,'Gaboon Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Bitis','Gabonica',1),
@@ -161,7 +158,7 @@ Adder','Animalia','Chordata','Reptilia','Squamata','Viperidae','Vipera','Berus',
  (134,'Spiny Bush Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Atheris','Hispida',1),
  (135,'Hairy Bush Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Atheris','Hispida',1),
  (136,'Western Bush Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Atheris','Chlorechis',1),
- (137,' West African Leaf Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Atheris','Chlorechis',1),
+ (137,'West African Leaf Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Atheris','Chlorechis',1),
  (138,'Blunt-Nosed Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Macrovipera','Lebetinus',1),
  (139,'Lebetine Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Macrovipera','Lebetinus',1),
  (140,'Levant Viper','Animalia','Chordata','Reptilia','Squamata','Viperidae','Macrovipera','Lebetinus',1),
@@ -174,8 +171,7 @@ Adder','Animalia','Chordata','Reptilia','Squamata','Viperidae','Vipera','Berus',
  (147,'European Fallow Deer','Animalia','Chordata','Mammalia','Artiodactyla','Cervidae','Dama','Dama',1),
  (148,'Reindeer','Animalia','Chordata','Mammalia','Artiodactyla','Cervidae','Rangifer','Tarandus',1),
  (149,'Elk','Animalia','Chordata','Mammalia','Artiodactyla','Cervidae','Cervus','Canadensis',1),
- (150,'
-Titanoboa','Animalia','Chordata','Reptilia','Squamata','Boidae','Titanoboa','Cerrejonensis',1),
+ (150,'Titanoboa','Animalia','Chordata','Reptilia','Squamata','Boidae','Titanoboa','Cerrejonensis',1),
  (151,'Pitahaya','Plantae','Angiosperms','Eudicots','Caryophyllales','Cactaceae','Selenicereus','Undatus',1);
 CREATE INDEX IF NOT EXISTS "ind_id" ON "animal_details" (
 	"id"

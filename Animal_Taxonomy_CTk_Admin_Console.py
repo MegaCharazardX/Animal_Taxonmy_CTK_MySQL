@@ -134,9 +134,9 @@ def createSearchButton(_frame, _command, _ishomepage = False):
         tmp_Search_Btn.place(x = 660, y = 105)
         return tmp_Search_Btn
 
-def createSearchEntry(_frame, _ishomepage = False, placeholder_text = ""):
+def createSearchEntry(_frame, _ishomepage = False, pt = ""):
     if _ishomepage :
-        tmp_Entry = CTkEntry(_frame, width = 640, text_color = glb_color_3, placeholder_text="", font=("Arial" , 14, "italic" ))
+        tmp_Entry = CTkEntry(_frame, width = 640, text_color = glb_color_3, placeholder_text=pt, font=("Arial" , 14, "italic" ))
         tmp_Entry.place(x = 15, y = 130)
         return tmp_Entry
     else:
@@ -680,7 +680,7 @@ def home_page():
                 
     label = createSearchResultLabel(home_frame)
 
-    search = createSearchEntry(home_frame, _ishomepage = True, placeholder_text = "Enter * for all entry")
+    search = createSearchEntry(home_frame, _ishomepage = True, pt = "Enter * for all entry")
 
     search_btn = createSearchButton(home_frame, on_home_search_btn_click, _ishomepage = True)
 
