@@ -6,7 +6,7 @@ import sqlite3
 from tkinter import messagebox
 from Global_Config import *
 import mysql.connector
-import Password_Hasher as PH
+from Crypter import Crypter as Crypt
 
 root = CTk()
 
@@ -30,7 +30,7 @@ glb_current_working_directory = os.path.dirname(os.path.realpath(__file__))
 
 def validation():
     username = username_entry.get()
-    password = PH.encrypt(password_entry.get())
+    password = Crypt(password_entry.get()).encrypt()
     if username == "" or password == "":
             error_label = CTkLabel(login_frame, text = "Username or password is wrong", font = ("Bradley Hand ITC" , 15, "italic", "bold"), text_color = "red")
             error_label.place(x = 75, y = 170)
@@ -41,7 +41,7 @@ def validation():
         # username_entry.configure(border_color = "red")
         # password_entry.configure(border_color = "red")
     else :
-        tmp_qry = "SELECT Username, Password FROM User_details WHERE Username = '"+username+"' AND Password = '"+password+"' AND Active = 1"
+        tmp_qry = "SELECT Username, Password FROM User_details WHERE Username = '"+username+"' OR Gmail = '"+username+"' AND Password = '"+password+"' AND Active = 1"
         cur.execute(tmp_qry) 
         row  = cur.fetchone()
         if row :
@@ -79,7 +79,7 @@ def redirect_to_user(_isadmin = False):
         username_label.place(x = 15, y = 70)
 
         global username_entry
-        username_entry = CTkEntry(login_frame, text_color = glb_color_3, width = 200)
+        username_entry = CTkEntry(login_frame, text_color = glb_color_3, width = 200, placeholder_text= "Enter Username or gmail")
         username_entry.place(x = 170, y = 70)
 
         password_label = CTkLabel(login_frame, text = "Password:-", font = ("Bradley Hand ITC" , 20, "italic", "bold"), text_color = glb_color_2)
@@ -91,7 +91,7 @@ def redirect_to_user(_isadmin = False):
 
         submit_btn = CTkButton(login_frame, height = 15, text = "Submit", fg_color = glb_color_2,hover_color = glb_color_3,corner_radius = 35,
                                command = lambda: validation())
-        submit_btn.place(x = 45, y = 150)
+        submit_btn.place(x = 210, y = 150)
 
         def back_to_main_console():
             login.destroy()
@@ -99,7 +99,7 @@ def redirect_to_user(_isadmin = False):
 
         cancel_btn = CTkButton(login_frame, height = 15, text = "Back", fg_color = glb_color_2,hover_color = glb_color_3,corner_radius = 35,
                                command = lambda: (back_to_main_console()))
-        cancel_btn.place(x = 210, y = 150)
+        cancel_btn.place(x = 45, y = 150)
         
         root.destroy()
         login.mainloop()
