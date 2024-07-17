@@ -5,7 +5,7 @@ import os
 import sqlite3
 from tkinter import messagebox
 from Global_Config import *
-import mysql.connector
+import pymysql
 from Crypter import Crypter as Crypt
 
 root = CTk()
@@ -22,7 +22,15 @@ root.maxsize(width = 600, height = 300)
 
 root.iconbitmap(r"icon/favicon6.ico")
 set_appearance_mode("Dark")
-con = sqlite3.connect("Animal_Taxonomy_Db.db", timeout = 3)                   
+#con = sqlite3.connect("Animal_Taxonomy_Db.db", timeout = 3)                   
+#cur = con.cursor()
+con = pymysql.connect(
+    host = "localhost",
+    user = "root",
+    passwd  = "*password*11",
+    database = "animal_taxonomy_db"
+                    )
+
 cur = con.cursor()
 
 global  glb_current_working_directory

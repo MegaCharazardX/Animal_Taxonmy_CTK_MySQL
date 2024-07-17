@@ -6,7 +6,8 @@ from subprocess import call
 import sqlite3
 from Global_Config import *
 import mysql.connector
-import Password_Hasher as PH
+from Crypter import Crypter as Crypt
+
 
 
 root = CTk()
@@ -222,7 +223,7 @@ def add_page():
                 errorlabel.configure(text = "")
                 add_page()
             errorlabel.after(glb_after_time, refresh)
-            cur.execute("INSERT INTO User_details (Username, Password) VALUES (?,?)",(_username, _password))
+            cur.execute("INSERT INTO User_details (Username, Password) VALUES (%s,%s)",(_username, _password))
             con.commit()
 
     insert_btn = createButton(add_frame, "Insert", 40, insert_admin, 430, 200)
@@ -307,7 +308,7 @@ def add_page():
                 errorlabel.configure(text = "")
                 add_page()
             errorlabel.after(glb_after_time, refresh)
-            cur.execute("INSERT INTO animal_details (name, kingdom, phylum, class, naturalorder, family, genus, species) VALUES (?,?,?,?,?,?,?,?)",(_name, _kingdom, _phylum, _class, _order, _family, _genus, _species))
+            cur.execute("INSERT INTO animal_details (name, kingdom, phylum, class, naturalorder, family, genus, species) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",(_name, _kingdom, _phylum, _class, _order, _family, _genus, _species))
             con.commit()
 
     insert_btn = createButton(add_frame, "Insert", 40, insert, 430, 480)
@@ -399,7 +400,7 @@ def update_page():
         row = cur.fetchone()
         
         if row :
-            cur.execute("INSERT INTO animal_details (name, kingdom, phylum, class, naturalorder, family, genus, species) VALUES (?,?,?,?,?,?,?,?)",(_name, _kingdom, _phylum, _class, _order, _family, _genus, _species))
+            cur.execute("INSERT INTO animal_details (name, kingdom, phylum, class, naturalorder, family, genus, species) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",(_name, _kingdom, _phylum, _class, _order, _family, _genus, _species))
             con.commit()
 
             cur.execute("UPDATE animal_details SET active = 0 WHERE name = '"+_nametoupdate+"'")  
@@ -552,7 +553,10 @@ def home_page():
                 cur.execute("SELECT name , kingdom, phylum, class, naturalorder, family, genus, species FROM animal_details WHERE active != 0 ORDER BY name DESC")
                 tmpqry = cur.fetchall()
                 for row in tmpqry :
-                    label = CTkLabel(result_frame, text = row, font = ("Arial" , 14, "italic" ), text_color = glb_color_1)
+                    # label = CTkLabel(result_frame, text = row, font = ("Arial" , 14, "italic" ), text_color = glb_color_1)
+                    # label.pack(padx = 10, pady = 10, side = "bottom") 
+                    label = CTkButton(result_frame, text = row, font = ("Arial" , 14, "italic" ), text_color = glb_color_1, fg_color= "transparent", width= 762)
+                    print(row)
                     label.pack(padx = 10, pady = 10, side = "bottom") 
             
             for row in cur.execute("SELECT name, kingdom, phylum, class, naturalorder, family, genus, species FROM animal_details WHERE  name LIKE '%"+tosearch+"%' AND active != 0"):

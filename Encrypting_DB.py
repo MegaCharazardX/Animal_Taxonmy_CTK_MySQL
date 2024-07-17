@@ -12,7 +12,7 @@ con = pymysql.connect(
     host = "localhost",
     user = "root",
     passwd  = "*password*11",
-    database = "showroom"
+    database = "animal_taxonomy_db"
                     )
 
 cur = con.cursor()
@@ -20,11 +20,12 @@ cur = con.cursor()
 # if con.is_connected():
 #     print(1)
     
-result = cur.execute("Select Company, Model,Mileage, Engine, Engine_type, Price FROM ice_cars")#"Select name, kingdom, phylum, class, naturalorder, family, genus, species FROM animal_details")
-row = cur.fetchall()
+# result = cur.execute("Select Company, Model,Mileage, Engine, Engine_type, Price FROM ice_cars")#"Select name, kingdom, phylum, class, naturalorder, family, genus, species FROM animal_details")
+# row = cur.fetchall()
 
-r2 = cur1.execute("SELECT name , kingdom, phylum, class, naturalorder, family, genus, species FROM animal_details")
+r2 = cur1.execute("SELECT * FROM animal_details")
 row2 = cur1.fetchall()
+
 
 num = 0
 for i in row2 :
@@ -32,17 +33,25 @@ for i in row2 :
     l = []
     num += 1
     for j in i :
-        print(j)
-        l.append(str(Crypt(j).encrypt()))
-    print(l)
+        if type(j) == int :
+            l.append(j)
+            #print(j)
+        else:
+            l.append(str(Crypt(j).encrypt()))
+    print(l[1])
+    #cur1.execute(f"Insert INTO animal_details VALUES ({l[0]}, {l[1]}, {l[2]}, {l[3]}, {l[4]}, {l[5]}, {l[6]}, {l[7]}, )")
+    cur.execute ("INSERT INTO animal_details (name, kingdom, phylum, class, naturalorder, family, genus, species, active) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (l[1], l[2], l[3], l[4], l[5], l[6], l[7], l[8],l[9]))
+    # values = (l[1], l[2], l[3], l[4], l[5], l[6], l[7], l[8],l[9])
+    # cur.execute(temp_qry, values)
+    con.commit()
+    #cur.execute(f"Insert INTO animal_details VALUES ({l[0]}, {l[1]}, {l[2]}, {l[3]}, {l[4]}, {l[5]}, {l[6]}, {l[7]}, {l[8]}, {l[9]})")
 
-
-for i in row :
-    print(i)
-    l = []
-    num += 1
-    for j in i :
-        print(j)
+# for i in row :
+#     print(i)
+#     l = []
+#     num += 1
+#     for j in i :
+#         print(j)
     
     # if num :
     #     temp_qry = str("INSERT INTO animal_details (name, kingdom, phylum, class, naturalorder, family, genus, species) VALUES (?,?,?,?,?,?,?,?)",((l[0]), l[1], l[2], l[3], l[4], l[5], l[6], l[7]))
@@ -63,3 +72,5 @@ for i in row :
 f.close()
 cur.close()
 con.close()
+cur1.close()
+con1.close()
