@@ -37,13 +37,28 @@ class Crypter :
         #cipher_text = input("Enter a message to decrypt: ")
         plain_text = ""
 
-        for letter in self.text:
-            if letter in string.punctuation :
-                plain_text += letter
-            else :
-                index = key.index(letter)
-                plain_text += chars[index]
+        if type(self.text) == list or type(self.text) == tuple :
+           
+            for word in self.text:                
+                for letter in word:
+                    if letter in string.punctuation :
+                        plain_text += letter
+                    else :
+                        index = key.index(letter)
+                        plain_text += chars[index]
+                plain_text+=" "
+            return plain_text
 
-        return plain_text
+        else :
+        
+            for letter in self.text:
+                if letter in string.punctuation :
+                    plain_text += letter
+                else :
+                    index = key.index(letter)
+                    plain_text += chars[index]
+
+            return plain_text
 
 # Loading.loading(text = "Encrypting.. ")
+print(Crypter(["fCwAJ AkA8Aki"]).decrypt())

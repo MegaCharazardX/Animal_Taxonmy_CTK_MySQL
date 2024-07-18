@@ -37,7 +37,7 @@ global  glb_current_working_directory
 glb_current_working_directory = os.path.dirname(os.path.realpath(__file__))
 
 def validation():
-    username = username_entry.get()
+    username =  Crypt(username_entry.get()).encrypt()
     password = Crypt(password_entry.get()).encrypt()
     if username == "" or password == "":
             error_label = CTkLabel(login_frame, text = "Username or password is wrong", font = ("Bradley Hand ITC" , 15, "italic", "bold"), text_color = "red")

@@ -23,7 +23,7 @@ cur = con.cursor()
 # result = cur.execute("Select Company, Model,Mileage, Engine, Engine_type, Price FROM ice_cars")#"Select name, kingdom, phylum, class, naturalorder, family, genus, species FROM animal_details")
 # row = cur.fetchall()
 
-r2 = cur1.execute("SELECT * FROM animal_details")
+r2 = cur1.execute("SELECT * FROM User_details")
 row2 = cur1.fetchall()
 
 
@@ -40,7 +40,8 @@ for i in row2 :
             l.append(str(Crypt(j).encrypt()))
     print(l[1])
     #cur1.execute(f"Insert INTO animal_details VALUES ({l[0]}, {l[1]}, {l[2]}, {l[3]}, {l[4]}, {l[5]}, {l[6]}, {l[7]}, )")
-    cur.execute ("INSERT INTO animal_details (name, kingdom, phylum, class, naturalorder, family, genus, species, active) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (l[1], l[2], l[3], l[4], l[5], l[6], l[7], l[8],l[9]))
+    #cur.execute ("INSERT INTO animal_details (name, kingdom, phylum, class, naturalorder, family, genus, species, active) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (l[1], l[2], l[3], l[4], l[5], l[6], l[7], l[8],l[9]))
+    #cur.execute ("INSERT INTO User_details (Username, Gmail, Password, Active) VALUES (%s,%s,%s,%s)", (l[1], l[2], l[3], l[4]))
     # values = (l[1], l[2], l[3], l[4], l[5], l[6], l[7], l[8],l[9])
     # cur.execute(temp_qry, values)
     con.commit()

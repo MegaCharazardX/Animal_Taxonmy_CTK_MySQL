@@ -19,7 +19,10 @@ CREATE TABLE `animal_details` (
 CREATE TABLE `user_details` (
   `id` int NOT NULL AUTO_INCREMENT,
   `Username` varchar(50) DEFAULT NULL,
+  `Gmail` varchar(50) DEFAULT NULL,
   `Password` varchar(50) DEFAULT NULL,
   `Active` tinyint DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+

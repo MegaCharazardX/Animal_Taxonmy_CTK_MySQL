@@ -5,7 +5,7 @@ import os
 from subprocess import call
 import sqlite3
 from Global_Config import *
-import mysql.connector
+import pymysql
 from Crypter import Crypter as Crypt
 
 
@@ -19,10 +19,18 @@ root.iconbitmap(r"E:\Dhejus\PythonPractice\XII_Project\Animal_Taxonomy_CTK\icon\
 root.minsize(width = 1000, height = 550)
 set_appearance_mode("Dark")
 
-con = sqlite3.connect("Animal_Taxonomy_Db.db", timeout = 3)
+# con = sqlite3.connect("Animal_Taxonomy_Db.db", timeout = 3)
+
+# cur = con.cursor()
+
+con = pymysql.connect(
+    host = "localhost",
+    user = "root",
+    passwd  = "*password*11",
+    database = "animal_taxonomy_db"
+                    )
 
 cur = con.cursor()
-
 #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=GLOBALS=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
 
 global glb_top_position, \
@@ -184,8 +192,8 @@ def add_page():
     
     def insert_admin():
         _username = user_name_entry.get()
-        _password = PH.encrypt(password_entry.get())
-        _repassword = PH.encrypt(re_password_entry.get())
+        _password = Crypt(password_entry.get()).encrypt()
+        _repassword = Crypt(re_password_entry.get()).encrypt()
 
         tmp_qry ="SELECT Username FROM User_details WHERE Username= '"+_username+"'AND Active = 1"
         cur.execute(tmp_qry)
@@ -550,13 +558,15 @@ def home_page():
             
             if tosearch == "*":
                 
-                cur.execute("SELECT name , kingdom, phylum, class, naturalorder, family, genus, species FROM animal_details WHERE active != 0 ORDER BY name DESC")
+                tmp_qry = "SELECT name , kingdom, phylum, class, naturalorder, family, genus, species FROM animal_details WHERE active != 0 ORDER BY name DESC"
+                cur.execute(tmp_qry)
                 tmpqry = cur.fetchall()
                 for row in tmpqry :
+                    row = Crypt(row).decrypt()
                     # label = CTkLabel(result_frame, text = row, font = ("Arial" , 14, "italic" ), text_color = glb_color_1)
                     # label.pack(padx = 10, pady = 10, side = "bottom") 
                     label = CTkButton(result_frame, text = row, font = ("Arial" , 14, "italic" ), text_color = glb_color_1, fg_color= "transparent", width= 762)
-                    print(row)
+                    #print(row)
                     label.pack(padx = 10, pady = 10, side = "bottom") 
             
             for row in cur.execute("SELECT name, kingdom, phylum, class, naturalorder, family, genus, species FROM animal_details WHERE  name LIKE '%"+tosearch+"%' AND active != 0"):
@@ -573,6 +583,7 @@ def home_page():
                 cur.execute("SELECT name , kingdom, phylum, class, naturalorder, family, genus, species FROM animal_details WHERE active != 0 ORDER BY name DESC")
                 tmpqry = cur.fetchall()
                 for row in tmpqry :
+                    row = Crypt(row).decrypt()
                     label = CTkLabel(result_frame, text = row, font = ("Arial" , 14, "italic" ), text_color = glb_color_1)
                     label.pack(padx = 10, pady = 10, side = "bottom") 
             
