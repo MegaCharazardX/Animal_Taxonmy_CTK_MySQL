@@ -33,7 +33,7 @@ con = pymysql.connect(
 
 cur = con.cursor()
 
-global  glb_current_working_directory
+global  glb_current_working_directory 
 glb_current_working_directory = os.path.dirname(os.path.realpath(__file__))
 
 def validation():

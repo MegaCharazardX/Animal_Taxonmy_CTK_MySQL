@@ -61,4 +61,4 @@ class Crypter :
             return plain_text
 
 # Loading.loading(text = "Encrypting.. ")
-print(Crypter(["fCwAJ AkA8Aki"]).decrypt())
+#print(Crypter(["fCwAJ AkA8Aki"]).decrypt())
